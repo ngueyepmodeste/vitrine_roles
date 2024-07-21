@@ -9,7 +9,7 @@ app_icgroup_url:
   ODOO_URL: https://www.odoo.com/
   PGADMIN_URL: https://www.pgadmin.org/
 
-your_container_name: vitrine_web
-image_version: 1.2
+your_container_name: vitrine
+image_version: 1.1
 PORT_EX: 80
 repo_cible: /home/ubuntu
