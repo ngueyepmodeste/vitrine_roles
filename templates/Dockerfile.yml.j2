@@ -1,6 +1,10 @@
-FROM python:3.6-alpine
+ARG VERSION
+FROM python:{{label.VERSION}}
 
-LABEL maintainer="MODESTE DOLUMIN NGUEYEP" email="modestengueyep1@gmail.com"
+ARG YOUR_NAME
+ARG YOUR_EMAIL
+
+LABEL maintainer="{{label.YOUR_NAME}}" email="{{label.YOUR_EMAIL}}"
 WORKDIR /opt
 
 COPY requirements.txt requirements.txt
@@ -11,8 +15,8 @@ COPY . .
 ARG ODOO_URL
 ARG PGADMIN_URL
 
-ENV ODOO_URL=$ODOO_URL
-ENV PGADMIN_URL=$PGADMIN_URL
+ENV ODOO_URL={{app_icgoup_url.ODOO_URL}}
+ENV PGADMIN_URL={{app_icgoup_url.PGADMIN_URL}}
 
 EXPOSE 8080
 
