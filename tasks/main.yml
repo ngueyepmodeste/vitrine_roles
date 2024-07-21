@@ -1,38 +1,35 @@
 ---
 
-# differente tâches à executer dans notre role_ansible
+# Différentes tâches à exécuter dans notre rôle Ansible
 
 - name: Template the Dockerfile
-  template:
+  ansible.builtin.template:
     src: Dockerfile.yml.j2
-    dest: {{repo_cible}}/Dockerfile
+    dest: "{{ repo_cible }}/Dockerfile"
 
 # Install Docker
 - name: Install Docker
   ansible.builtin.apt:
-      name: docker.io
-      state: present
+    name: docker.io
+    state: present
 
- # Start and enable Docker
+# Start and enable Docker
 - name: Start and enable Docker
   ansible.builtin.service:
-      name: docker
-      state: started
-      enabled: true
+    name: docker
+    state: started
+    enabled: true
 
 - name: Build the Docker image
   ansible.builtin.command:
-    cmd: docker build -t my_image:{{image_version}}  {{repo_cible}}
-  args:
-    chdir: {{repo_cible}}
+    cmd: docker build -t my_image:{{ image_version }} {{ repo_cible }}
+    chdir: "{{ repo_cible }}"
 
-
-     # Run the httpd image as a container
+# Run the httpd image as a container
 - name: Run the httpd image
-  ansible.builtin.docker_container:
-        name: "{{ your_container_name }}"
-        image: "my_image:{{ image_version }}"
-        state: started
-        ports: 
-          - "{{PORT_EX}}:8080"
-
+  community.docker.docker_container:
+    name: "{{ your_container_name }}"
+    image: "my_image:{{ image_version }}"
+    state: started
+    ports:
+      - "{{ PORT_EX }}:8080"
