@@ -10,5 +10,6 @@ app_icgroup_url:
   PGADMIN_URL: https://www.pgadmin.org/
 
 your_container_name: vitrine_web
-image_version: 1.1
+image_version: 1.2
 PORT_EX: 80
+repo_cible: /home/ubuntu

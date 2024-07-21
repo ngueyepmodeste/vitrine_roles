@@ -5,7 +5,7 @@
 - name: Template the Dockerfile
   template:
     src: Dockerfile.yml.j2
-    dest: /home/ubuntu/Dockerfile
+    dest: {{repo_cible}}/Dockerfile
 
 # Install Docker
 - name: Install Docker
@@ -20,11 +20,18 @@
       state: started
       enabled: true
 
+- name: Build the Docker image
+  ansible.builtin.command:
+    cmd: docker build -t my_image:{{image_version}}  {{repo_cible}}
+  args:
+    chdir: {{repo_cible}}
+
+
      # Run the httpd image as a container
 - name: Run the httpd image
   ansible.builtin.docker_container:
         name: "{{ your_container_name }}"
-        image: "ngueyepmodeste/ic-webapp:{{ image_version }}"
+        image: "my_image:{{ image_version }}"
         state: started
         ports: 
           - "{{PORT_EX}}:8080"
