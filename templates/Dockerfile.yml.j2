@@ -7,7 +7,6 @@ ARG YOUR_EMAIL
 LABEL maintainer="{{label.YOUR_NAME}}" email="{{label.YOUR_EMAIL}}"
 WORKDIR /opt
 
-COPY requirements.txt requirements.txt
 RUN pip install flask>=2.0.0
 
 COPY . .
