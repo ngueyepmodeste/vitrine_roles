@@ -8,21 +8,18 @@
     dest: "{{ repo_cible }}/Dockerfile"
 
 - name: Copier le dossier images
-  copy:
   synchronize:
       src: /home/ubuntu/projet-fil-rouge/images
       dest: "{{ repo_cible }}"
       recursive: yes
 
 - name: Copier le dossier templates
-  copy:
   synchronize:
       src: /home/ubuntu/projet-fil-rouge/templates
       dest: "{{ repo_cible }}"
       recursive: yes
 
 - name: Copier le  dossier static
-  copy:
   synchronize:
       src: /home/ubuntu/projet-fil-rouge/static
       dest: "{{ repo_cible }}"
