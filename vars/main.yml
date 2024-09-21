@@ -13,3 +13,4 @@ your_container_name: vitrine
 image_version: 1.1
 PORT_EX: 80
 repo_cible: /home/ubuntu
+image_name: group6
